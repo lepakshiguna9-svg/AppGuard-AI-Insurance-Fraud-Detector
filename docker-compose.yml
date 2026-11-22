@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  appguard-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: appguard-ai-fraud-detector
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - APPGUARD_ARTIFACT_PATH=/app/artifacts/appguard_v1.pt
+      - LOG_LEVEL=INFO
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8000/api/v1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true
+    read_only: false
+    tmpfs:
+      - /tmp

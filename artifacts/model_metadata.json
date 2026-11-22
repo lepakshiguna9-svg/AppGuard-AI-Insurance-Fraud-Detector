@@ -1,0 +1,69 @@
+{
+  "artifact_version": "1.0.0",
+  "model_architecture": "TabularVAE",
+  "created_at_utc": "2026-11-22T09:01:50.016740+00:00",
+  "random_seed": 42,
+  "feature_schema": {
+    "numerical_features": [
+      "coverage_amount",
+      "deductible_amount",
+      "applicant_age",
+      "annual_income_estimate",
+      "prior_application_count",
+      "recent_address_changes_count",
+      "property_or_vehicle_age"
+    ],
+    "categorical_features": [
+      "policy_type",
+      "premium_frequency",
+      "application_channel",
+      "beneficiary_relation",
+      "declared_credit_tier"
+    ],
+    "total_encoded_dimension": 31
+  },
+  "model_config": {
+    "input_dim": 31,
+    "hidden_dims": [
+      64,
+      32
+    ],
+    "latent_dim": 8,
+    "dropout_rate": 0.05,
+    "beta": 0.01
+  },
+  "calibration": {
+    "sample_count": 1000,
+    "score_mean": 0.10240862225554884,
+    "score_std": 0.08441164462328397,
+    "score_min": 0.025098323822021484,
+    "score_max": 2.480562210083008,
+    "percentiles": {
+      "p50": 0.09660224989056587,
+      "p75": 0.1158930491656065,
+      "p90": 0.1390426278114319,
+      "p95": 0.15416307300329202,
+      "p98": 0.1960688146948814,
+      "p99": 0.23244296476244908
+    },
+    "calibrated_threshold": 0.15416307300329202,
+    "target_percentile": 95.0,
+    "caveat_notice": "Calibration was conducted on a held-out set intended to represent nominal applications. Any contamination in the calibration data shifts this empirical threshold. Legitimate unusual applications may exceed this threshold, while sophisticated fraudulent applications conforming to typical patterns will not be flagged. This threshold is an operational review triage guideline, NOT a proven boundary of fraud or moral culpability."
+  },
+  "training_metadata": {
+    "epochs": 35,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "final_epoch_loss": {
+      "epoch": 35,
+      "total_loss": 0.18665541991402831,
+      "recon_loss": 0.13601748324647733,
+      "kl_loss": 5.063793683353858
+    },
+    "history_summary": {
+      "initial_total_loss": 0.36845051883896696,
+      "final_total_loss": 0.18665541991402831
+    }
+  },
+  "regulatory_disclaimer": "AppGuard AI anomaly detection models generate probabilistic reconstruction error signals. Scores reflect statistical atypicality compared to baseline training distributions. Under no circumstances should these scores be used for automated rejection, denial of coverage, adverse premium adjustments, or policy cancellation. All review-recommended applications require human operational adjudication with full contextual inspection."
+}

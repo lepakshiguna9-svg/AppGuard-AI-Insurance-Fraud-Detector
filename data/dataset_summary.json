@@ -1,0 +1,38 @@
+{
+  "dataset_name": "AppGuard Synthetic Insurance Application Benchmark",
+  "seed": 42,
+  "splits": {
+    "train": {
+      "total": 5000,
+      "anomalies": 0
+    },
+    "validation": {
+      "total": 1000,
+      "anomalies": 0
+    },
+    "test": {
+      "total": 1000,
+      "normal": 800,
+      "anomalies": 200
+    }
+  },
+  "features": {
+    "numerical": [
+      "coverage_amount",
+      "deductible_amount",
+      "applicant_age",
+      "annual_income_estimate",
+      "prior_application_count",
+      "recent_address_changes_count",
+      "property_or_vehicle_age"
+    ],
+    "categorical": [
+      "policy_type",
+      "premium_frequency",
+      "application_channel",
+      "beneficiary_relation",
+      "declared_credit_tier"
+    ]
+  },
+  "synthetic_notice": "Educational synthetic data only. No real policyholder or applicant data is used. Excludes names, SSN, birth dates, street addresses, and protected attributes."
+}
